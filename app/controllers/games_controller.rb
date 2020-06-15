@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 
 class GamesController < ApplicationController
-  @@score = 0
+  # @@score = 0
 
   def new
     alphabet = ('A'..'Z').to_a
@@ -12,11 +12,11 @@ class GamesController < ApplicationController
   end
 
   def score
-    @grid = params[:grid]
+    @grid = params[:grid].split
     @attempt = params[:word]
     check_english = english_word(@attempt)
     @result = { english?: check_english["found"], grid?: in_grid?(@attempt, @grid) }
-    @@score += check["length"] if in_grid?(@attempt, @grid) && check["found"]
+    # @@score += check["length"] if in_grid?(@attempt, @grid) && check["found"]
   end
 
   def english_word(attempt)
@@ -26,9 +26,6 @@ class GamesController < ApplicationController
   end
 
   def in_grid?(attempt, grid)
-    print "hello inside in_grid?"
-    print @grid
-    print @grid.class
     attempt_a = attempt.upcase.split("")
     attempt_a.each do |letter|
       print letter
