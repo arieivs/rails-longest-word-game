@@ -2,6 +2,7 @@
   <h1>Result</h1>
   <% if @result[:english?] && @result[:grid?] %>
     <p><strong>Congratulations!</strong> <%= params[:word] %> is a valid word!</p>
+    <p>Your score is now <%= session[:score] %></p>
   <% else %>
     <% if !@result[:grid?]%>
       <p>Sorry but <strong><%= params[:word] %></strong> can't be build out of
